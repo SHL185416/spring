@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--把mybatis配置文件中 整合到 spring-->
+
+    <!--DataSource-->
+    <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?userSSL=false&amp;userUnicode=true;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!--SqlSessionFactory-->
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource1"/>
+        <!--绑定Mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:com/sherlock/mapper/UserMapper.xmll"/>
+
+
+        <!--配置到方法上 1-->
+        <!--Spring配置声明式事务-->
+        <!--当启用SqlSessionFactory都会开启事务，使用完之后自动关闭-->
+        <property name="transactionFactory">
+            <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+        </property>
+    </bean>
+
+
+    <!--Spring配置声明式事务-->
+    <!--当启用SqlSessionFactory都会开启事务，使用完之后自动关闭-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource1" />
+    </bean>
+
+    <!--配置到操作上 1-->
+    <!--结合AOP实现事务的切入-->
+    <!--配置事务的通知: propagation传播特性-->
+    <!--transactionManager 事务管理器-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="delete"/>
+            <tx:method name="select"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务切入-->
+    <aop:config>
+        <aop:pointcut id="tePointCut" expression="execution(* com.sherlock.mapper.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="tePointCut"/>
+    </aop:config>
+
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <!--SqlSessionTemplate只能使用构造器注入，它没有Set方法-->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory2"/>
+    </bean>
+
+</beans>

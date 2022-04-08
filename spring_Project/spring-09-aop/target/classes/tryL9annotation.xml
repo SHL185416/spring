@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--动态代理的是接口，不是类-->
+    <bean class="com.tryL9.service.UserServiceImpl" id="userServiceImpl12" />
+    <!--接口-->
+    <!--<bean class="com.tryL9.service.UserService" id="userService" abstract="true"/>-->
+
+    <!--Annotation 实现 AOP-->
+    <!--annotationPointCut配置类-->
+    <bean id="annotationPointCut" class="com.tryL9.annotation.AnnotationPointCut"/>
+    <!--通过类来完成 在bean文件的配置-->
+    <!--开启注解支持-->
+    <aop:aspectj-autoproxy/>
+
+</beans>

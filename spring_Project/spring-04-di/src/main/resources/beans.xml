@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address12" class="com.sherlock.pojo.Address">
+        <property name="address" value="HN"/>
+        <property name="x" value="12"/>
+        <property name="y" value="30"/>
+    </bean>
+
+
+    <bean id="student" class="com.sherlock.pojo.Student">
+        <property name="name" value="sherlock"/>
+
+        <property name="wife" value=""/>
+
+        <property name="address" ref="address12"/>
+
+        <property name="books">
+            <array>
+                <value>b1</value>
+                <value>b2</value>
+                <value>b3</value>
+            </array>
+        </property>
+
+        <property name="hobbys">
+            <list>
+                <value>b1</value>
+                <value>b2</value>
+                <value>b3</value>
+            </list>
+        </property>
+
+        <property name="card">
+            <map>
+                <entry key="care1" value="num1"/>
+                <entry key="care2" value="num2"/>
+                <entry key="care3" value="num3"/>
+            </map>
+        </property>
+
+        <property name="game">
+            <set>
+                <value>g1</value>
+                <value>g2</value>
+                <value>g3</value>
+            </set>
+        </property>
+
+        <property name="info">
+            <props>
+                <prop key="info1">this is more infomation</prop>
+                <prop key="info2">this is more infomation2</prop>
+                <prop key="info3">this is more infomation3</prop>
+            </props>
+        </property>
+
+
+    </bean>
+
+</beans>

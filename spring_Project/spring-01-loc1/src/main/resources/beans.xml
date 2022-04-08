@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id ="mySQLImp" class="com.sherlock.dao.UserMySQLImp"/>
+    <bean id ="myDaoImp" class="com.sherlock.dao.UserDaoImp"/>
+
+    <bean id ="userServiceImp" class="com.sherlock.service.UserServiceImp">
+        <property name="userdao" ref="mySQLImp"/>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-dao.xml"/>
+
+    <!--No SqlSessionDaoSupport-->
+<!--    <bean id="userMapperImpl1" class="com.sherlock.mapper.UserMapperImpl">
+        &lt;!&ndash;sqlSessionTemplate 需要配置 <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>&ndash;&gt;
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>-->
+
+    <!--SqlSessionDaoSupport-->
+    <bean id="userMapperImpl2" class="com.sherlock.mapper.UserMapperImpl">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory2"/>
+    </bean>
+
+</beans>

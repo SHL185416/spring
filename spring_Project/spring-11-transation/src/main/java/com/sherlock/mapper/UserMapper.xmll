@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="com.sherlock.mapper.UserMapper">
+    <insert id="addUser" parameterType="com.sherlock.pojo.User111">
+        insert into mybatis.user(id, username, password) VALUE (#{id}, #{username}, #{password});
+    </insert>
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user where id=#{id};
+    </delete>
+
+    <select id="selectUser" resultType="com.sherlock.pojo.User111">
+        select * from mybatis.user;
+    </select>
+</mapper>

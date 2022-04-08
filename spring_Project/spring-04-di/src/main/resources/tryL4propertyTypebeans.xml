@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="pet1" class="com.tryL.pojo.Pets" c:petName="puppy"/>
+
+    <bean id="people1" class="com.tryL.pojo.Human">
+        <property name="name" value="peopleName"/>
+        <property name="game">
+            <set>
+                <value>game1</value>
+                <value>game2</value>
+                <value>game3</value>
+                <value>game4</value>
+            </set>
+        </property>
+        <property name="books">
+            <array>
+                <value>BOOK1</value>
+                <value>book2</value>
+                <value>book3</value>
+            </array>
+        </property>
+        <property name="car">
+            <map>
+                <entry key="1" value="car1"/>
+                <entry key="2" value="car2"/>
+                <entry key="3" value="car3"/>
+            </map>
+        </property>
+        <property name="girlfriend" value=" "/>
+        <property name="hobby">
+            <list>
+                <value>hobby1</value>
+                <value>hobby2</value>
+                <value>hobby3</value>
+            </list>
+        </property>
+        <property name="pet" ref="pet1"/>
+        <property name="resume">
+            <props>
+                <prop key="p1">p1context</prop>
+                <prop key="p2">p2context</prop>
+                <prop key="p3">p3context</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

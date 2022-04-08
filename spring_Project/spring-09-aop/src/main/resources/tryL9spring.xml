@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--动态代理的是接口，不是类-->
+    <bean class="com.tryL9.service.UserServiceImpl" id="userServiceImpl12" />
+    <!--接口-->
+    <!--<bean class="com.tryL9.service.UserService" id="userService" abstract="true"/>-->
+
+    <bean class="com.tryL9.log.AfterLog" id="afterLog"/>
+    <bean class="com.tryL9.log.BeforeLog" id="beforeLog"/>
+
+
+    <!--使用Spring原生API  配置aop-->
+    <!--proxy-target-class="true" 允许动态代理类-->
+    <aop:config >
+        <!--设置切入点-->
+        <aop:pointcut id="pointcut1" expression="execution(* com.tryL9.service.UserServiceImpl.*(..))"/>
+
+        <!--使用切入点-->
+        <aop:advisor advice-ref="beforeLog" pointcut-ref="pointcut1"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut1"/>
+
+    </aop:config>
+
+</beans>

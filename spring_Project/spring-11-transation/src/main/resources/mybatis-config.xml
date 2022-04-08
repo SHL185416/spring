@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!-- 加载类路径下的属性文件 -->
+    <typeAliases>
+        <package name="com.sherlock.pojo"/>
+    </typeAliases>
+
+    <!--spring也可以实现相同的效果-->
+<!--    &lt;!&ndash; 设置一个默认的连接环境信息 &ndash;&gt;-->
+<!--    <environments default="mysql_developer">-->
+<!--        &lt;!&ndash; 连接环境信息，取一个任意唯一的名字 &ndash;&gt;-->
+<!--        <environment id="mysql_developer">-->
+<!--            &lt;!&ndash; mybatis使用jdbc事务管理方式 &ndash;&gt;-->
+<!--            <transactionManager type="jdbc"/>-->
+<!--            &lt;!&ndash; mybatis使用连接池方式来获取连接 &ndash;&gt;-->
+<!--            <dataSource type="pooled">-->
+<!--                &lt;!&ndash; 配置与数据库交互的4个必要属性 &ndash;&gt;-->
+<!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?userSSL=true&amp;userUnicode=true;characterEncoding=UTF-8"/>-->
+<!--                <property name="username" value="root"/>-->
+<!--                <property name="password" value="root"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+    <!--<property name="mapperLocations" value="classpath:com/sherlock/mapper/UserMapper.xmll"/>-->
+<!--    <mappers>-->
+<!--        <mapper class="com.sherlock.mapper.UserMapper"/>-->
+<!--    </mappers>-->
+
+</configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--动态代理的是接口，不是类-->
+    <bean class="com.tryL9.service.UserServiceImpl" id="userServiceImpl12" />
+    <!--接口-->
+    <!--<bean class="com.tryL9.service.UserService" id="userService" abstract="true"/>-->
+
+
+    <!--使用自定义类  配置aop-->
+    <!--proxy-target-class="true" 允许动态代理类-->
+    <bean class="com.tryL9.diy.DIYLog" id="diyLog"/>
+    <aop:config >
+        <aop:aspect ref="diyLog">
+            <!--设置切入点-->
+            <aop:pointcut id="diyPointCut" expression="execution(* com.tryL9.service.UserServiceImpl.*(..))"/>
+
+            <aop:after method="afterLog" pointcut-ref="diyPointCut"/>
+            <aop:before method="beforeLog" pointcut-ref="diyPointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

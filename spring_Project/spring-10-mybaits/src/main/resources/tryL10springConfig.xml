@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--把mybatis配置文件中 整合到 spring-->
+
+    <!--DataSource-->
+    <bean id="dataSource10" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?userSSL=true&amp;userUnicode=true;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!--SqlSessionFactory-->
+    <bean id="sqlSessionFactory10" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource10"/>
+        <property name="configLocation" value="classpath:tryL10mybatisConfig.xml"/>
+        <!--绑定Mybatis配置文件-->
+        <!--<mappers>
+            <mapper class="com.tryL10.mapper.UserMapper"/>
+        </mappers>-->
+        <property name="mapperLocations" value="classpath:com/tryL10/mapper/UserMapper.xml"/>
+
+
+    </bean>
+
+
+    <bean id="sqlSessionTemplate10" class="org.mybatis.spring.SqlSessionTemplate">
+        <!--SqlSessionTemplate只能使用构造器注入，它没有Set方法-->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory10"/>
+    </bean>
+
+    <!--为了封装 此功能放入aplication-->
+<!--    <bean id="userMapperImpl2" class="com.sherlock.mapper.UserMapperImpl">
+        &lt;!&ndash;name = userMapperImpl的Set方法的形参名&ndash;&gt;
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>-->
+
+
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--通过@AutoWired把cat和dog注入到people中-->
+    <!--就不需要 property 整合cat和dog的bean-->
+    <context:annotation-config/>
+    <bean id="catQualifier" class="com.sherlock.pojo.Cat"/>
+    <bean id="cat" class="com.sherlock.pojo.Cat"/>
+    <bean id="dog" class="com.sherlock.pojo.Dog"/>
+
+
+    <bean id="people" class="com.sherlock.pojo.People">
+        <property name="name" value="peopleName"/>
+    </bean>
+
+
+
+
+
+
+
+</beans>

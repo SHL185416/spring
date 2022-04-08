@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-dao.xml"/>
+    <!--创建userMapperImpl1对象-->
+    <bean id="userMapperImpl1" class="com.sherlock.mapper.UserMapperImpl">
+        <!--sqlSessionTemplate 需要配置 <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>-->
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>
+
+    <bean id="userMapperImpl2" class="com.sherlock.mapper.UserMapperImpl2">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>
+    </bean>
+
+</beans>
